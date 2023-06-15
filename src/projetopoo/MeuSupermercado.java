@@ -1,16 +1,16 @@
 package projetopoo;
 
-public class CaixaRegistradora {
-    private Carrinho carrinhoDeCompras;
-    private Cliente cliente;
-    private Estoque estoque;
+public class MeuSupermercado{
+    protected Carrinho carrinhoDeCompras;
+    protected Cliente cliente;
+    protected Estoque estoque;
 
-    public CaixaRegistradora(Cliente cliente, Estoque estoque) {
+    public MeuSupermercado(Cliente cliente, Estoque estoque) {
         this.carrinhoDeCompras = new Carrinho();
         this.cliente = cliente;
         this.estoque = estoque;
     }
-
+    
     public void adicionarProduto(Produto produto) {
         if (estoque.getQuantidadeEstoque(produto) > 0) {
             carrinhoDeCompras.adicionarProduto(produto);
@@ -20,12 +20,13 @@ public class CaixaRegistradora {
             System.out.println("Desculpe, o produto está fora de estoque: " + produto.getNome());
         }
     }
-
+    
     public void removerProduto(Produto produto) {
         carrinhoDeCompras.removerProduto(produto);
         estoque.adicionarProdutoEstoque(produto, 1);
         System.out.println("Produto removido do carrinho: " + produto.getNome());
     }
+    
 
     public double calcularTotal() {
         return carrinhoDeCompras.calcularTotal();
